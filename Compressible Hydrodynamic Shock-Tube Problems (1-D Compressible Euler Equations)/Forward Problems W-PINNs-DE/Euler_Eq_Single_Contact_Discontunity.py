@@ -125,7 +125,9 @@ def IC(x):
 # Solve Euler equations using PINNs
 def main():
     # Initialization
-    device = torch.device('cpu')                                          # Run on CPU
+    # device = torch.device('cpu')                                          # Run on CPU
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     lr = 0.0005                                                           # Learning rate
     epochs = 44350                                                        # Number of iterations
     num_x = 1000                                                          # Number of points in t
@@ -176,7 +178,8 @@ def main():
             loss = 0.1*loss_pde + 10*loss_ic                                          # Total loss function G(theta)
 
             # Print iteration, loss of PDE and ICs
-            print(f'epoch {epoch} loss_pde:{loss_pde:.8f}, loss_ic:{loss_ic:.8f}')
+            if epoch % 200==0:
+                print(f'epoch {epoch} loss_pde:{loss_pde:.8f}, loss_ic:{loss_ic:.8f}')
             loss.backward()
             return loss
 
@@ -184,7 +187,8 @@ def main():
         loss = optimizer.step(closure)
         loss_value = loss.item() if not isinstance(loss, float) else loss
         # Print total loss
-        print(f'epoch {epoch}: loss {loss_value:.8f}')
+        if epoch % 200==0:
+            print(f'epoch {epoch}: loss {loss_value:.8f}')
 
     # Print CPU
     print('Start training...')
