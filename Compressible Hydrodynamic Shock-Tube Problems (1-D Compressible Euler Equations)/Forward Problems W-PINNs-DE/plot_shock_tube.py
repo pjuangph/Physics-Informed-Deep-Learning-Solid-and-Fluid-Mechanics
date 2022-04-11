@@ -51,7 +51,7 @@ def plot_results(prefix:str,t:np.ndarray, x:np.ndarray, p:np.ndarray, u:np.ndarr
         x = X[i,:]
         t = T[i,1]
         # Plot vs time 
-        fig = plt.figure(dpi=300,num=1,clear=True,figsize=(10,20))
+        fig, axes = plt.subplots(nrows=4, ncols=1,clear=True, num=1)
         plt.subplot(4, 1, 1)
         plt.plot(x, rho[:,i], 'k-')
         plt.ylim(p_bounds[0],p_bounds[1])
@@ -62,27 +62,27 @@ def plot_results(prefix:str,t:np.ndarray, x:np.ndarray, p:np.ndarray, u:np.ndarr
         plt.subplot(4, 1, 2)
         plt.plot(x, u[:,i], 'r-')
         plt.ylim(u_bounds[0],u_bounds[1])
-        plt.ylabel('U-Velocity',fontsize=16)
+        plt.ylabel('$U$',fontsize=16)
         plt.tick_params(axis='x',bottom=False,labelbottom=False)
         plt.grid(True)
 
         plt.subplot(4, 1, 3)
         plt.plot(x, p[:,i], 'b-')
         plt.ylim(p_bounds[0],p_bounds[1])
-        plt.ylabel('Pressure',fontsize=16)
+        plt.ylabel('$p$',fontsize=16)
         plt.tick_params(axis='x',bottom=False,labelbottom=False)
         plt.grid(True)
 
         plt.subplot(4, 1, 4)
         plt.plot(x, E[:,i], 'g-')
         plt.ylim(E_bounds[0],E_bounds[1])
-        plt.ylabel('Energy',fontsize=16)
+        plt.ylabel('$E$',fontsize=16)
         plt.grid(True)
         plt.xlabel('x',fontsize=16)
         plt.subplots_adjust(left=0.2)
         plt.subplots_adjust(bottom=0.15)
         plt.subplots_adjust(top=0.95)
-        plt.savefig(f'ml_plots/{prefix}-shocktube_t={t:0.4f}.png')
+        plt.savefig(f'ml_plots/{prefix}-shocktube_t={t:0.4f}.png',dpi=300)
 
 
 p = Path("ml_plots/")
