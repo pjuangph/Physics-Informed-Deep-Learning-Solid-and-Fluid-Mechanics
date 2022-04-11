@@ -83,7 +83,7 @@ def plot_results(prefix:str,t:np.ndarray, x:np.ndarray, p:np.ndarray, u:np.ndarr
         plt.subplots_adjust(bottom=0.15)
         plt.subplots_adjust(top=0.95)
         plt.savefig(f'ml_plots/{prefix}-shocktube_t={t:0.4f}.png',dpi=300)
-
+        plt.clf()
 
 p = Path("ml_plots/")
 p.mkdir(parents=True, exist_ok=True)
