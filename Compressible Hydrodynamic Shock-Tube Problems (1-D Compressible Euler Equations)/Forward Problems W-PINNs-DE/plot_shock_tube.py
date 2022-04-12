@@ -19,27 +19,27 @@ def plot_results(prefix:str,t:np.ndarray, x:np.ndarray, p:np.ndarray, u:np.ndarr
     gamma = 1.4 
     E = p/((gamma-1.0)*rho)+0.5*u**2
 
-    fig,axes = plt.subplots(nrows=2, ncols=2,figsize=(20,20))
-    plt.subplot(2,2,1)
-    cs = plt.contourf(X,T,p,cmap="rainbow")
-    fig.colorbar(cs, ax=axes[0,0], shrink=0.9)
-    plt.ylabel('Normalized Pressure',fontsize=16)
+    # fig,axes = plt.subplots(nrows=2, ncols=2,figsize=(8,8))
+    # plt.subplot(2,2,1)
+    # cs = plt.contourf(X,T,p,cmap="rainbow")
+    # fig.colorbar(cs, ax=axes[0,0], shrink=0.9)
+    # plt.ylabel('Normalized Pressure',fontsize=16)
 
-    plt.subplot(2,2,2)
-    cs = plt.contourf(X,T,u,cmap="rainbow")
-    fig.colorbar(cs, ax=axes[0,1], shrink=0.9)
-    plt.ylabel('Normalized u-velocity',fontsize=16)
+    # plt.subplot(2,2,2)
+    # cs = plt.contourf(X,T,u,cmap="rainbow")
+    # fig.colorbar(cs, ax=axes[0,1], shrink=0.9)
+    # plt.ylabel('Normalized u-velocity',fontsize=16)
 
-    plt.subplot(2,2,3)
-    cs = plt.contourf(X,T,rho,cmap="rainbow")
-    fig.colorbar(cs, ax=axes[1,0], shrink=0.9)
-    plt.ylabel('$rho$',fontsize=16)
+    # plt.subplot(2,2,3)
+    # cs = plt.contourf(X,T,rho,cmap="rainbow")
+    # fig.colorbar(cs, ax=axes[1,0], shrink=0.9)
+    # plt.ylabel('$rho$',fontsize=16)
 
-    plt.subplot(2,2,4)
-    cs = plt.contourf(X,T,E,cmap="rainbow")    
-    fig.colorbar(cs, ax=axes[1,1], shrink=0.9)
-    plt.ylabel('E',fontsize=16)
-    plt.savefig(f'{prefix}-contour_plots.png')
+    # plt.subplot(2,2,4)
+    # cs = plt.contourf(X,T,E,cmap="rainbow")    
+    # fig.colorbar(cs, ax=axes[1,1], shrink=0.9)
+    # plt.ylabel('E',fontsize=16)
+    # plt.savefig(f'{prefix}-contour_plots.png')
     
     rho_bounds = (np.min(rho), np.max(rho))
     u_bounds = (np.min(u), np.max(u))
@@ -51,7 +51,7 @@ def plot_results(prefix:str,t:np.ndarray, x:np.ndarray, p:np.ndarray, u:np.ndarr
         x = X[i,:]
         t = T[i,1]
         # Plot vs time 
-        fig, axes = plt.subplots(nrows=4, ncols=1,clear=True, num=1)
+        fig, axes = plt.subplots(nrows=4, ncols=1,clear=True, num=1,figsize=(8.0,6.0))
         plt.subplot(4, 1, 1)
         plt.plot(x, rho[:,i], 'k-')
         plt.ylim(p_bounds[0],p_bounds[1])
